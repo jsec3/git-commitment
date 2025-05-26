@@ -1,0 +1,53 @@
+import os
+import re
+from datetime import datetime
+
+class CodeQualityChecker:
+    def __init__(self, directory):
+        self.directory = directory
+        self.issues = []
+
+    def check_file(self, filepath):
+        """Check a single file for common code quality issues."""
+        with open(filepath, 'r', encoding='utf-8') as file:
+            content = file.read()
+            self._check_line_length(content, filepath)
+            self._check_todo_comments(content, filepath)
+            self._check_docstrings(content, filepath)
+
+    def _check_line_length(self, content, filepath):
+        """Check for lines that are too long."""
+        for i, line in enumerate(content.split('\n'), 1):
+            if len(line) > 100:
+                self.issues.append(f"{filepath}:{i} - Line too long ({len(line)} characters)")
+
+    def _check_todo_comments(self, content, filepath):
+        """Check for TODO comments."""
+        for i, line in enumerate(content.split('\n'), 1):
+            if 'TODO' in line.upper():
+                self.issues.append(f"{filepath}:{i} - TODO comment found")
+
+    def _check_docstrings(self, content, filepath):
+        """Check for missing docstrings in functions and classes."""
+        # This is a simplified check - in reality, you'd want to use AST
+        if 'def ' in content and '"""' not in content:
+            self.issues.append(f"{filepath} - Missing docstrings in functions")
+
+    def generate_report(self):
+        """Generate a report of all issues found."""
+        if not self.issues:
+            return "No issues found!"
+        
+        report = "Code Quality Report\n"
+        report += "==================\n\n"
+        for issue in self.issues:
+            report += f"- {issue}\n"
+        return report
+
+if __name__ == "__main__":
+    checker = CodeQualityChecker(".")
+    for root, _, files in os.walk("."):
+        for file in files:
+            if file.endswith('.py'):
+                checker.check_file(os.path.join(root, file))
+    print(checker.generate_report()) 

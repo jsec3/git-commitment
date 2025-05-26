@@ -1,0 +1,39 @@
+import os
+import shutil
+from datetime import datetime
+
+class FileOrganizer:
+    def __init__(self, directory):
+        self.directory = directory
+        self.extensions = {
+            'images': ['.jpg', '.jpeg', '.png', '.gif'],
+            'documents': ['.pdf', '.doc', '.docx', '.txt'],
+            'code': ['.py', '.js', '.html', '.css'],
+            'archives': ['.zip', '.rar', '.7z']
+        }
+
+    def organize_files(self):
+        """Organize files in the directory based on their extensions."""
+        for filename in os.listdir(self.directory):
+            if os.path.isfile(os.path.join(self.directory, filename)):
+                self._move_file(filename)
+
+    def _move_file(self, filename):
+        """Move file to appropriate directory based on its extension."""
+        file_extension = os.path.splitext(filename)[1].lower()
+        
+        for category, extensions in self.extensions.items():
+            if file_extension in extensions:
+                category_dir = os.path.join(self.directory, category)
+                if not os.path.exists(category_dir):
+                    os.makedirs(category_dir)
+                shutil.move(
+                    os.path.join(self.directory, filename),
+                    os.path.join(category_dir, filename)
+                )
+                break
+
+if __name__ == "__main__":
+    # Example usage
+    organizer = FileOrganizer(".")
+    organizer.organize_files() 
