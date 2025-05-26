@@ -3,8 +3,12 @@ name: Auto Commit
 # Force update to trigger scheduler
 on:
   schedule:
-    # Run every 1 minute for testing
-    - cron: '*/1 * * * *'
+    # Weekdays (Mon-Fri): 3 times per day
+    - cron: '13 9 * * 1-5'   # 09:13 UTC
+    - cron: '47 14 * * 1-5'  # 14:47 UTC
+    - cron: '22 19 * * 1-5'  # 19:22 UTC
+    # Weekends (Sat-Sun): 1 time per day
+    - cron: '33 15 * * 6,0'  # 15:33 UTC
   workflow_dispatch: # Allow manual triggering
 
 jobs:
