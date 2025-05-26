@@ -37,3 +37,4 @@ if __name__ == "__main__":
     # Example usage
     organizer = FileOrganizer(".")
     organizer.organize_files() 
+# Consider adding more error handling
