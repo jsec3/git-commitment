@@ -2,8 +2,8 @@ name: Auto Commit
 
 on:
   schedule:
-    # Run at random times between 9 AM and 5 PM UTC, Monday through Friday
-    - cron: '0 9-17/2 * * 1-5'
+    # Run at random times between 9 AM and 5 PM UTC, every day
+    - cron: '0 9-17/2 * * *'
   workflow_dispatch: # Allow manual triggering
 
 jobs:
