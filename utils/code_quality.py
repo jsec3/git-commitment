@@ -51,3 +51,4 @@ if __name__ == "__main__":
             if file.endswith('.py'):
                 checker.check_file(os.path.join(root, file))
     print(checker.generate_report()) 
+# Consider adding more error handling
