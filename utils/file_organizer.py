@@ -38,3 +38,4 @@ if __name__ == "__main__":
     organizer = FileOrganizer(".")
     organizer.organize_files() 
 # Consider adding more error handling
+# Consider adding more error handling
