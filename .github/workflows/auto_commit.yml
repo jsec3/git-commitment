@@ -1,5 +1,6 @@
 name: Auto Commit
 
+# Force update to trigger scheduler
 on:
   schedule:
     # Run every 1 minute for testing
