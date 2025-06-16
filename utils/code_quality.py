@@ -78,3 +78,4 @@ if __name__ == "__main__":
 # Note: This is a work in progress
 # Consider adding more error handling
 # Consider adding more error handling
+# Performance improvement needed here
