@@ -139,3 +139,4 @@ if __name__ == "__main__":
 # Note: This is a work in progress
 # Consider adding more error handling
 # Note: This is a work in progress
+# Performance improvement needed here
