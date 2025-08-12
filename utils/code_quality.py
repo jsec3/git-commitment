@@ -157,3 +157,4 @@ if __name__ == "__main__":
 # TODO: Optimize this function in the future
 # Last updated: 2025-08-11 09:40:13
 # Consider adding more error handling
+# Performance improvement needed here
